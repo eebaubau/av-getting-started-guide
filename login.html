@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angeles Ventures - Sign In</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #58CC02;
+    --green-dark: #46A302;
+    --green-light: #D7FFB8;
+    --dark: #4B4B4B;
+    --darker: #3C3C3C;
+    --gray: #777777;
+    --border: #E5E5E5;
+    --bg: #F7F7F7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card {
+    background: white;
+    border-radius: 24px;
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    border: 2px solid var(--border);
+  }
+  .brand { font-size: 22px; font-weight: 800; color: var(--green); margin-bottom: 20px; }
+  .tag {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--darker);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  h1 .accent { color: var(--green); }
+  .subtitle {
+    color: var(--gray);
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+  .field { margin-bottom: 16px; text-align: left; }
+  label {
+    display: block;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    outline: none;
+    transition: all 0.15s;
+    color: var(--darker);
+  }
+  input:focus {
+    border-color: var(--green);
+    background: white;
+  }
+  button {
+    width: 100%;
+    background: var(--green);
+    color: white;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 16px;
+    border: none;
+    border-bottom: 4px solid var(--green-dark);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.15s;
+    margin-top: 8px;
+  }
+  button:hover { transform: translateY(-1px); }
+  button:active { transform: translateY(2px); border-bottom-width: 2px; }
+  .error {
+    background: #FFE0E0;
+    color: #C53030;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .error.show { display: block; }
+  .footer-note {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">Angeles Ventures</div>
+    <div class="tag">Getting Started</div>
+    <h1>Welcome to your <span class="accent">first agent</span> guide</h1>
+    <p class="subtitle">Enter the password to continue.</p>
+    <div class="error" id="error">Wrong password. Try again.</div>
+    <form method="POST" action="/api/login">
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autofocus required autocomplete="current-password">
+      </div>
+      <button type="submit">Let's go</button>
+    </form>
+    <div class="footer-note">Need access? Ping Eduardo.</div>
+  </div>
+  <script>
+    if (new URLSearchParams(location.search).get('error')) {
+      document.getElementById('error').classList.add('show');
+    }
+  </script>
+</body>
+</html>
