@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angeles Ventures - Getting Started Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #58CC02;
+    --green-dark: #46A302;
+    --green-light: #D7FFB8;
+    --green-bg: #F0FFF0;
+    --yellow: #FFC800;
+    --yellow-light: #FFF4CC;
+    --blue: #1CB0F6;
+    --blue-light: #DDF4FF;
+    --red: #FF4B4B;
+    --red-light: #FFE0E0;
+    --purple: #CE82FF;
+    --purple-light: #F3E5FF;
+    --dark: #4B4B4B;
+    --darker: #3C3C3C;
+    --gray: #777777;
+    --gray-light: #AFAFAF;
+    --bg-white: #FFFFFF;
+    --bg-snow: #F7F7F7;
+    --border: #E5E5E5;
+    --shadow: 0 2px 0 #E5E5E5;
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg-white);
+    color: var(--dark);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-white);
+    border-bottom: 2px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand { font-size: 22px; font-weight: 800; color: var(--green); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    text-decoration: none; color: var(--gray); font-weight: 700; font-size: 16px; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  /* ─── HERO ─── */
+  .hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+    background: var(--bg-white);
+  }
+  .hero-mascot { width: 120px; height: 120px; margin: 0 auto 24px; }
+  .hero-label {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: 52px; font-weight: 900; color: var(--darker);
+    line-height: 1.15; max-width: 680px; margin: 0 auto 18px;
+  }
+  .hero h1 .accent { color: var(--green); }
+  .hero p {
+    font-size: 21px; color: var(--gray); max-width: 500px;
+    margin: 0 auto 36px; font-weight: 600;
+  }
+  .hero-btn {
+    display: inline-block; background: var(--green); color: white;
+    font-weight: 800; font-size: 18px; padding: 16px 40px;
+    border-radius: 16px; text-decoration: none;
+    border-bottom: 4px solid var(--green-dark);
+    transition: all 0.15s; cursor: pointer;
+  }
+  .hero-btn:hover { transform: translateY(-1px); }
+  .hero-btn:active { transform: translateY(2px); border-bottom-width: 2px; }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-bar {
+    position: sticky;
+    top: 50px;
+    z-index: 99;
+    display: flex; align-items: center; justify-content: center;
+    gap: 4px; padding: 10px 24px; background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .j-pill {
+    display: flex; align-items: center; gap: 6px;
+    background: white; border: 2px solid var(--border);
+    border-radius: 14px; padding: 7px 14px;
+    font-weight: 700; font-size: 13px; color: var(--gray);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .j-pill:hover { border-color: var(--green); color: var(--dark); transform: translateY(-1px); }
+  .j-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .j-pill.active { border-color: var(--green); background: var(--green-light); color: var(--green-dark); box-shadow: 0 2px 0 var(--green-dark); }
+  .j-pill.active svg { stroke: var(--green-dark); }
+  .j-arrow { color: var(--gray-light); font-size: 18px; padding: 0 1px; }
+
+  /* ─── SECTION ─── */
+  .section { padding: 70px 24px; max-width: 780px; margin: 0 auto; }
+  .section-alt { background: var(--bg-snow); }
+  .section-header { text-align: center; margin-bottom: 44px; }
+  .section-icon {
+    width: 76px; height: 76px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px; border-bottom: 4px solid;
+  }
+  .section-icon svg { width: 36px; height: 36px; }
+  .section-icon.green { background: var(--green-light); border-color: var(--green-dark); }
+  .section-icon.blue { background: var(--blue-light); border-color: #0E8DD6; }
+  .section-icon.yellow { background: var(--yellow-light); border-color: #E0A800; }
+  .section-icon.purple { background: var(--purple-light); border-color: #A855D6; }
+  .section-icon.red { background: var(--red-light); border-color: #D63B3B; }
+  .section-tag {
+    font-size: 14px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--green); margin-bottom: 8px;
+  }
+  .section-title { font-size: 38px; font-weight: 800; color: var(--darker); }
+  .section-subtitle {
+    font-size: 19px; color: var(--gray); font-weight: 600;
+    margin-top: 10px; max-width: 540px; margin-left: auto; margin-right: auto;
+  }
+
+  /* ─── CARD ─── */
+  .card {
+    background: var(--bg-white); border: 2px solid var(--border);
+    border-radius: 16px; padding: 30px 32px; margin-bottom: 22px;
+    box-shadow: var(--shadow); transition: all 0.2s;
+  }
+  .card:hover { border-color: var(--green); box-shadow: 0 2px 0 var(--green-dark); transform: translateY(-1px); }
+  .card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .card-num {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 20px; color: white;
+    flex-shrink: 0; border-bottom: 3px solid;
+  }
+  .card-num.green { background: var(--green); border-color: var(--green-dark); }
+  .card-num.blue { background: var(--blue); border-color: #0E8DD6; }
+  .card-num.yellow { background: var(--yellow); border-color: #E0A800; }
+  .card-num.purple { background: var(--purple); border-color: #A855D6; }
+  .card-num.red { background: var(--red); border-color: #D63B3B; }
+  .card-title { font-size: 22px; font-weight: 800; color: var(--darker); }
+  .card-body { font-size: 16px; color: var(--dark); font-weight: 600; }
+  .card-body ol, .card-body ul { padding-left: 22px; margin: 14px 0; }
+  .card-body li { margin-bottom: 12px; }
+  .card-body li strong { color: var(--green-dark); }
+  .card-body p { margin-bottom: 14px; }
+  .card-body a { color: var(--blue); text-decoration: none; font-weight: 700; }
+  .card-body a:hover { text-decoration: underline; }
+
+  /* ─── BUBBLES ─── */
+  .bubble {
+    border-radius: 16px; padding: 18px 22px; margin: 18px 0;
+    font-size: 15px; font-weight: 600;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .bubble svg { width: 24px; height: 24px; flex-shrink: 0; margin-top: 1px; }
+  .bubble.tip-green { background: var(--green-bg); border: 2px solid #B8F0B8; color: #2D7A00; }
+  .bubble.tip-blue { background: var(--blue-light); border: 2px solid #A8E0FF; color: #0A6DA8; }
+  .bubble.tip-yellow { background: var(--yellow-light); border: 2px solid #FFE080; color: #8A6C00; }
+  .bubble.tip-red { background: var(--red-light); border: 2px solid #FFB0B0; color: #B83030; }
+  .bubble.tip-purple { background: var(--purple-light); border: 2px solid #DDB8FF; color: #7A30B8; }
+
+  /* ─── CODE ─── */
+  .code {
+    background: #2B2B3D; color: #E0E0F0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; padding: 18px 22px;
+    border-radius: 14px; margin: 14px 0;
+    border-bottom: 3px solid #1A1A2A; overflow-x: auto;
+  }
+
+  /* ─── RECIPE ─── */
+  .recipe {
+    border: 2px solid var(--border); border-radius: 16px;
+    overflow: hidden; margin: 22px 0; box-shadow: var(--shadow);
+  }
+  .recipe-head {
+    background: var(--green); color: white;
+    padding: 16px 22px; font-weight: 800; font-size: 16px;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 3px solid var(--green-dark);
+  }
+  .recipe-head svg { width: 22px; height: 22px; }
+  .recipe-body {
+    background: #FAFFF5; padding: 24px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px; line-height: 1.9;
+    white-space: pre-wrap; color: var(--dark);
+  }
+  .recipe-body .h { color: var(--green-dark); font-weight: 700; }
+  .recipe-body .m { color: var(--gray); }
+
+  /* ─── YOUR TURN BOX ─── */
+  .your-turn {
+    background: #FFF5F5;
+    border: 3px dashed var(--red);
+    border-radius: 16px;
+    padding: 28px;
+    margin: 18px 0;
+    text-align: center;
+  }
+  .your-turn svg { width: 40px; height: 40px; margin-bottom: 12px; }
+  .your-turn h4 {
+    font-size: 20px; font-weight: 800; color: var(--red); margin-bottom: 8px;
+  }
+  .your-turn p {
+    font-size: 16px; font-weight: 600; color: #B83030; max-width: 500px; margin: 0 auto;
+  }
+
+  /* ─── TRIO CARDS ─── */
+  .trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin: 22px 0; }
+  .trio-card {
+    text-align: center; padding: 30px 18px;
+    border: 2px solid var(--border); border-radius: 16px;
+    box-shadow: var(--shadow); background: white; transition: all 0.2s;
+  }
+  .trio-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .trio-card svg { width: 48px; height: 48px; margin: 0 auto 14px; display: block; }
+  .trio-card .tc-title { font-weight: 800; font-size: 18px; color: var(--darker); margin-bottom: 6px; }
+  .trio-card .tc-desc { font-size: 14px; color: var(--gray); font-weight: 600; }
+
+  /* ─── TABLE ─── */
+  .dtable {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    border: 2px solid var(--border); border-radius: 16px;
+    overflow: hidden; margin: 18px 0; box-shadow: var(--shadow);
+  }
+  .dtable th {
+    background: var(--green); color: white;
+    padding: 14px 18px; text-align: left;
+    font-size: 14px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .dtable td {
+    padding: 14px 18px; font-size: 15px; font-weight: 600;
+    border-bottom: 2px solid var(--bg-snow);
+  }
+  .dtable tr:last-child td { border-bottom: none; }
+  .dtable td strong { color: var(--green-dark); }
+
+  /* ─── FOLDER TREE ─── */
+  .tree-wrap {
+    background: linear-gradient(135deg, #1a1a2e 0%, #232340 100%);
+    border-radius: 20px;
+    padding: 32px;
+    margin: 18px 0;
+    border: 2px solid #333352;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    overflow-x: auto;
+  }
+  .tree-wrap .tree-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: #666; margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #333352;
+  }
+  .tree-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 0; font-family: 'JetBrains Mono', monospace; font-size: 14px;
+  }
+  .tree-item.indent-1 { padding-left: 28px; }
+  .tree-item.indent-2 { padding-left: 56px; }
+  .tree-item.indent-3 { padding-left: 84px; }
+  .tree-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .tree-item .name { color: #E0E0F0; font-weight: 500; }
+  .tree-item .name.folder { color: #FFC800; }
+  .tree-item .name.file { color: #58CC02; }
+  .tree-item .name.highlight { color: #FF6B8A; font-weight: 700; }
+  .tree-item .desc {
+    color: #555; font-size: 12px; margin-left: auto;
+    font-family: 'Nunito', sans-serif; font-weight: 600;
+  }
+
+  /* ─── TROUBLE ─── */
+  .trouble {
+    background: white; border: 2px solid var(--border);
+    border-left: 5px solid var(--yellow);
+    border-radius: 0 16px 16px 0;
+    padding: 22px 26px; margin-bottom: 18px; box-shadow: var(--shadow);
+  }
+  .trouble h4 { font-size: 18px; font-weight: 800; color: var(--darker); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .trouble h4 svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .trouble p { font-size: 15px; font-weight: 600; color: var(--gray); }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center; padding: 60px 24px;
+    background: var(--bg-snow); border-top: 2px solid var(--border);
+  }
+  .footer-brand { font-size: 24px; font-weight: 900; color: var(--green); margin-bottom: 8px; }
+  .footer p { color: var(--gray); font-size: 16px; font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 34px; }
+    .trio { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">Angeles Ventures</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-mascot" width="120" height="120" viewBox="0 0 120 120">
+    <!-- Body: rounded square like Duo app icon -->
+    <rect x="8" y="8" width="104" height="104" rx="28" ry="28" fill="#58CC02"/>
+    <!-- Inner body highlight -->
+    <rect x="14" y="14" width="92" height="92" rx="24" ry="24" fill="#62D818"/>
+    <!-- Lighter belly area -->
+    <ellipse cx="60" cy="72" rx="32" ry="24" fill="#78E22E"/>
+    <!-- Left eye white -->
+    <ellipse cx="42" cy="50" rx="16" ry="17" fill="white"/>
+    <!-- Right eye white -->
+    <ellipse cx="76" cy="50" rx="16" ry="17" fill="white"/>
+    <!-- Left pupil (looking slightly right) -->
+    <circle cx="46" cy="51" r="9" fill="#3C3C3C"/>
+    <!-- Right pupil (looking slightly right) -->
+    <circle cx="80" cy="51" r="9" fill="#3C3C3C"/>
+    <!-- Left eye shine -->
+    <circle cx="43" cy="47" r="4" fill="white"/>
+    <!-- Right eye shine -->
+    <circle cx="77" cy="47" r="4" fill="white"/>
+    <!-- Beak top -->
+    <path d="M54 62 Q60 58 66 62 L62 67 Q60 69 58 67 Z" fill="#FFA000"/>
+    <!-- Beak bottom highlight -->
+    <path d="M56 64 Q60 60 64 64 L62 67 Q60 69 58 67 Z" fill="#FF8C00"/>
+    <!-- Left eyebrow tuft -->
+    <path d="M28 36 Q36 24 46 34" stroke="#46A302" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Right eyebrow tuft -->
+    <path d="M74 34 Q84 24 92 36" stroke="#46A302" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Small wing hint left -->
+    <path d="M14 60 Q8 52 14 44" stroke="#4CB800" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Small wing hint right -->
+    <path d="M106 44 Q112 52 106 60" stroke="#4CB800" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+  <div class="hero-label">Getting Started Guide</div>
+  <h1>Set up your first <span class="accent">Claude Agent</span> from scratch</h1>
+  <p>A friendly, step-by-step guide to Claude Desktop, Cowork, and building your first skill.</p>
+  <a href="#install" class="hero-btn">Let's go!</a>
+</section>
+
+<!-- PROGRESS BAR -->
+<nav class="progress-bar" id="progressBar">
+  <a href="#install" class="j-pill active" data-section="install">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <span>Install</span>
+  </a>
+  <span class="j-arrow">&#x203A;</span>
+  <a href="#cowork" class="j-pill" data-section="cowork">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M4 9a9 9 0 0 1 15.36-4.36"/><path d="M20 15a9 9 0 0 1-15.36 4.36"/></svg>
+    <span>Cowork</span>
+  </a>
+  <span class="j-arrow">&#x203A;</span>
+  <a href="#connect" class="j-pill" data-section="connect">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <span>Connect</span>
+  </a>
+  <span class="j-arrow">&#x203A;</span>
+  <a href="#skills" class="j-pill" data-section="skills">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    <span>Learn</span>
+  </a>
+  <span class="j-arrow">&#x203A;</span>
+  <a href="#build" class="j-pill" data-section="build">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+    <span>Build</span>
+  </a>
+  <span class="j-arrow">&#x203A;</span>
+  <a href="#run" class="j-pill" data-section="run">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <span>Run</span>
+  </a>
+  <span class="j-arrow">&#x203A;</span>
+  <a href="#expand" class="j-pill" data-section="expand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L15 22l-4-9-9-4z"/></svg>
+    <span>Expand</span>
+  </a>
+</nav>
+
+<!-- ═══ CH1: INSTALL ═══ -->
+<div id="install" class="section-alt">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon green">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#46A302" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+    <div class="section-tag">Chapter 1</div>
+    <div class="section-title">Download & Install</div>
+    <div class="section-subtitle">Before anything else, you need the Claude desktop app on your computer.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num green">1</div>
+      <div class="card-title">Download Claude Desktop</div>
+    </div>
+    <div class="card-body">
+      <ol>
+        <li>Open your browser and go to <strong>claude.ai/download</strong></li>
+        <li>Click the download button for your operating system (Mac or Windows)</li>
+        <li>Open the downloaded file and follow the installation prompts</li>
+        <li>Once installed, open the Claude app &mdash; you should see a chat interface</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num green">2</div>
+      <div class="card-title">Sign In to Your Account</div>
+    </div>
+    <div class="card-body">
+      <ol>
+        <li>Use your <strong>Anthropic account</strong> to sign in</li>
+        <li>Username: <strong>startups@angelesvc.com</strong></li>
+        <li>Password: A code is sent to Outlook &mdash; check your inbox</li>
+      </ol>
+      <div class="bubble tip-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A6DA8" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Claude has two modes: <strong>Chat</strong> (regular conversation) and <strong>Cowork</strong> (files + tools + skills). This guide uses Cowork.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ CH2: COWORK ═══ -->
+<div id="cowork">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon blue">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0E8DD6" stroke-width="2.5" stroke-linecap="round"><path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M4 9a9 9 0 0 1 15.36-4.36"/><path d="M20 15a9 9 0 0 1-15.36 4.36"/></svg>
+    </div>
+    <div class="section-tag">Chapter 2</div>
+    <div class="section-title">Switch to Cowork</div>
+    <div class="section-subtitle">Cowork mode lets Claude read your files, connect to tools, and run skills. It's the powerhouse.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num blue">3</div>
+      <div class="card-title">Open Cowork Mode</div>
+    </div>
+    <div class="card-body">
+      <ol>
+        <li>In the Claude Desktop app, look at the <strong>top of the screen</strong> for <strong>Chat</strong> and <strong>Cowork</strong> tabs</li>
+        <li>Click <strong>Cowork</strong> to switch into that mode</li>
+        <li>You'll see a new interface where Claude can access files and run tasks</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num blue">4</div>
+      <div class="card-title">Connect Your OneDrive Folder</div>
+    </div>
+    <div class="card-body">
+      <p>This is how Claude gets access to the Angeles Ventures shared workspace files.</p>
+      <ol>
+        <li><strong>Install the OneDrive app</strong> on your computer (not the browser &mdash; the actual desktop app). Download it from onedrive.com.</li>
+        <li><strong>Sign in with your startups@angelesvc.com email.</strong></li>
+        <li>Open this link in your browser:<br>
+          <a href="https://netorgft14110815-my.sharepoint.com/my?remoteItem=%7B%22mp%22%3A%7B%22webAbsoluteUrl%22%3A%22https%3A%2F%2Fnetorgft14110815%2Dmy%2Esharepoint%2Ecom%2Fpersonal%2Fstartups%5Fangelesvc%5Fcom%22%2C%22listFullUrl%22%3A%22https%3A%2F%2Fnetorgft14110815%2Dmy%2Esharepoint%2Ecom%2Fpersonal%2Fstartups%5Fangelesvc%5Fcom%2FDocuments%22%2C%22rootFolder%22%3A%22%2Fpersonal%2Fstartups%5Fangelesvc%5Fcom%2FDocuments%2FFrancisco%20Mariscal%27s%20files%20%2D%20Angeles%20Venture%20Group%22%7D%2C%22rsf%22%3A%7B%22listId%22%3A%22fd7105d6%2Def4a%2D4f6b%2Dba12%2Dc877eadd5e6f%22%2C%22siteUrl%22%3A%22https%3A%2F%2Fnetorgft14110815%2Dmy%2Esharepoint%2Ecom%2Fpersonal%2Ffrancisco%5Fangelesvc%5Fcom%22%2C%22uniqueId%22%3A%22c7480caf%2D7084%2D4fea%2D9848%2D8db465b52cc7%22%7D%7D" style="word-break:break-all;font-size:14px;">Angeles Venture Group on SharePoint</a>
+        </li>
+        <li>Look for <strong>"Add shortcut to My files"</strong> &mdash; usually near the top, sometimes under a "..." menu. Click it.</li>
+        <li><strong>Wait a minute.</strong> Then open <strong>Finder</strong> on your Mac. In the left sidebar, look for OneDrive with "Angeles Venture Group" inside. If you see the numbered folders (00. Decks, 01. Fundraising...), you're good!</li>
+        <li>Now open Claude Desktop &rarr; Cowork &rarr; click the <strong>folder icon</strong> &rarr; navigate to that folder</li>
+        <li>Claude now has read and write access to all the fund files!</li>
+      </ol>
+      <div class="bubble tip-green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2D7A00" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span><strong>How to verify:</strong> Open Finder &rarr; left sidebar &rarr; OneDrive &rarr; "Angeles Venture Group" &rarr; you should see all the numbered folders.</span>
+      </div>
+      <div class="bubble tip-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A6DA8" stroke-width="2.5" stroke-linecap="round"><path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M4 9a9 9 0 0 1 15.36-4.36"/><path d="M20 15a9 9 0 0 1-15.36 4.36"/></svg>
+        <span>You only need to select the folder once per session. When you start a new Cowork session, you may need to select it again.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ CH3: CONNECT ═══ -->
+<div id="connect" class="section-alt">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon yellow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    </div>
+    <div class="section-tag">Chapter 3</div>
+    <div class="section-title">Connect Airtable</div>
+    <div class="section-subtitle">MCP is the bridge between Claude and external apps. Airtable is the most important one for deal flow.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">5</div>
+      <div class="card-title">Add the Airtable Connector</div>
+    </div>
+    <div class="card-body">
+      <ol>
+        <li>In Claude Desktop, go to <strong>Settings</strong> (gear icon, bottom-left)</li>
+        <li>Look for <strong>Connectors</strong> or <strong>Integrations</strong></li>
+        <li>Search for <strong>"Airtable"</strong> and click <strong>Connect</strong></li>
+        <li>You'll be redirected to Airtable &mdash; sign in and authorize access</li>
+        <li>Once done, you'll see Airtable listed as connected in Settings</li>
+      </ol>
+      <div class="bubble tip-yellow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8A6C00" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>For this exercise, we use <strong>EduTest</strong> (the sandbox) &mdash; NOT Total Deal Flow. EduTest is safe for testing!</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ CH4: UNDERSTANDING SKILLS ═══ -->
+<div id="skills">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon purple">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#A855D6" stroke-width="2.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    </div>
+    <div class="section-tag">Chapter 4</div>
+    <div class="section-title">Understanding Skills</div>
+    <div class="section-subtitle">A skill is a recipe card for Claude: ingredients, steps, and where to serve the result.</div>
+  </div>
+
+  <div class="trio">
+    <div class="trio-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#58CC02" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+      <div class="tc-title">Consistency</div>
+      <div class="tc-desc">Same quality output, every single time</div>
+    </div>
+    <div class="trio-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FFC800" stroke-width="2.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <div class="tc-title">Speed</div>
+      <div class="tc-desc">30-minute tasks done in 2 minutes</div>
+    </div>
+    <div class="trio-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#CE82FF" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L15 22l-4-9-9-4z"/></svg>
+      <div class="tc-title">No Training</div>
+      <div class="tc-desc">Just type the command and go</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num purple" style="font-size:18px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" width="22" height="22"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="card-title">Where Skills Live</div>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Editable source files:</strong> <code style="background:var(--green-light);padding:3px 10px;border-radius:8px;font-size:13px;font-weight:700;">03. Funding / 1. Skills /</code> &mdash; edit and iterate here</li>
+        <li><strong>Packaged files:</strong> <code style="background:var(--green-light);padding:3px 10px;border-radius:8px;font-size:13px;font-weight:700;">_Skills/</code> at the root &mdash; ready-to-install snapshots</li>
+      </ul>
+      <div class="bubble tip-green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2D7A00" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span>When learning, focus on the editable files in <strong>03. Funding / 1. Skills/</strong>.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ CH5: BUILD ═══ -->
+<div id="build" class="section-alt">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon red">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#D63B3B" stroke-width="2.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+    </div>
+    <div class="section-tag">Chapter 5</div>
+    <div class="section-title">Build Your First Skill</div>
+    <div class="section-subtitle">Let's create "New Company Pre-Screening" &mdash; folders, website research, LinkedIn lookup, and Airtable record.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num red">7</div>
+      <div class="card-title">Create the Skill File</div>
+    </div>
+    <div class="card-body">
+      <p>In Cowork mode, tell Claude:</p>
+      <div class="code">Create a new file called new-company-pre-screening.md in 03. Funding/1. Skills/</div>
+      <p>Or create the file manually in OneDrive. The important thing: it must be a <strong>.md</strong> file in the right folder.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num red">8</div>
+      <div class="card-title">Write the Skill Contents</div>
+    </div>
+    <div class="card-body">
+      <p>Every skill follows a simple structure. Here's the template &mdash; fill in the header, then write your own steps:</p>
+      <div class="recipe">
+        <div class="recipe-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" width="20" height="20"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          new-company-pre-screening.md
+        </div>
+        <div class="recipe-body"><span class="m">---
+name: new-company-pre-screening
+description: "Sets up a new company for diligence:
+  creates folder structure in OneDrive, researches
+  company website and founder LinkedIn, creates
+  Airtable record. Triggers: 'pre-screening of
+  [Company]', 'new company pre-screening', 'add
+  company to pipeline to pre-screen'."
+---</span>
+
+<span class="h"># New Company Pre-Screening</span>
+
+<span class="h">## What this skill does</span>
+Sets up a new company for diligence: creates folder
+structure, researches website + LinkedIn, creates
+Airtable record for pre-screening purposes.
+
+<span class="h">## How to run</span>
+Type: "Pre-screening for [Company Name]"
+Must ask for the website URL if user hasn't provided it.
+
+<span class="h">## Inputs</span>
+- Company name (required)
+- Company website URL (required)
+
+<span class="h">## Steps</span>
+<span style="color:#FF4B4B;font-weight:700;">[Write your steps here! Think about what Claude
+should do and in what order. For example:
+ - Should it check if the company already exists?
+ - What folders should it create?
+ - What info should it extract from the website?
+ - Where should it save the results?
+
+Be as specific as possible. The more detail you
+give Claude, the better the output.]</span>
+
+<span class="h">## Outputs</span>
+- Company folder with all subfolders
+- Airtable record with populated fields</div>
+      </div>
+
+      <div class="your-turn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FF4B4B" stroke-width="2.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <h4>Your turn!</h4>
+        <p>Write the specific steps you want the agent to follow. Think through the workflow, test it, and iterate. That's how skills get built!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num red">9</div>
+      <div class="card-title">Save the File</div>
+    </div>
+    <div class="card-body">
+      <p>Make sure the file is saved as:</p>
+      <div class="code">03. Funding / 1. Skills / new-company-pre-screening.md</div>
+      <p>Since this is in OneDrive, it automatically syncs to everyone on the team.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ CH6: RUN ═══ -->
+<div id="run">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon green">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#46A302" stroke-width="2.5" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div class="section-tag">Chapter 6</div>
+    <div class="section-title">Run Your New Skill</div>
+    <div class="section-subtitle">The skill file exists. Now let's take it for a spin!</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num green">10</div>
+      <div class="card-title">Tell Claude to Use the Skill</div>
+    </div>
+    <div class="card-body">
+      <p>In Cowork mode, type:</p>
+      <div class="code">I want to pre-screen a new company called Civic Reach. Their website is civicreach.ai</div>
+      <p>Claude will read the skill file, follow the steps, and set everything up. Watch it work in real time!</p>
+      <div class="bubble tip-purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7A30B8" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>If Claude doesn't pick it up automatically: <strong>"Read 03. Funding/1. Skills/new-company-pre-screening.md and run it for Civic Reach"</strong></span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ CH7: EXPAND ═══ -->
+<div id="expand" class="section-alt">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon blue">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0E8DD6" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L15 22l-4-9-9-4z"/></svg>
+    </div>
+    <div class="section-tag">Chapter 7</div>
+    <div class="section-title">Other Connectors</div>
+    <div class="section-subtitle">Add more bridges between Claude and your favorite tools.</div>
+  </div>
+
+  <table class="dtable">
+    <thead>
+      <tr><th>Connector</th><th>What it does</th><th>When you need it</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Gmail</strong></td><td>Read and draft emails</td><td>Outreach to founders, LPs</td></tr>
+      <tr><td><strong>Google Calendar</strong></td><td>View and create events</td><td>Scheduling IC meetings</td></tr>
+      <tr><td><strong>Slack</strong></td><td>Read and send messages</td><td>Team communication</td></tr>
+      <tr><td><strong>Apollo</strong></td><td>Look up company &amp; contact data</td><td>Sourcing and enrichment</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- ═══ FOLDER MAP ═══ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon yellow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+    </div>
+    <div class="section-tag">Reference</div>
+    <div class="section-title">Folder Map</div>
+    <div class="section-subtitle">Where everything lives in our workspace.</div>
+  </div>
+
+  <div class="tree-wrap">
+    <div class="tree-title">Angeles Venture Group</div>
+
+    <div class="tree-item">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">_Skills/</span>
+      <span class="desc">Packaged skills (.skill files)</span>
+    </div>
+
+    <div class="tree-item">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">03. Funding/</span>
+    </div>
+
+    <div class="tree-item indent-1">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">1. Skills/</span>
+      <span class="desc">Editable skill source files</span>
+    </div>
+
+    <div class="tree-item indent-2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#58CC02" stroke-width="2" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span class="name file">CLAUDE.md</span>
+      <span class="desc">Master routing table</span>
+    </div>
+
+    <div class="tree-item indent-2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B8A" stroke-width="2" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span class="name highlight">new-company-pre-screening.md</span>
+      <span class="desc">Your new skill!</span>
+    </div>
+
+    <div class="tree-item indent-2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#58CC02" stroke-width="2" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span class="name file">one-pager.md</span>
+    </div>
+
+    <div class="tree-item indent-2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#58CC02" stroke-width="2" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span class="name file">investment-memo.md</span>
+    </div>
+
+    <div class="tree-item indent-2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#58CC02" stroke-width="2" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span class="name file">founder-scorer.md</span>
+    </div>
+
+    <div class="tree-item indent-2">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">references/</span>
+      <span class="desc">Shared data files</span>
+    </div>
+
+    <div class="tree-item indent-1">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">2. Companies/</span>
+      <span class="desc">One folder per company</span>
+    </div>
+
+    <div class="tree-item indent-2">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">Civic Reach/</span>
+    </div>
+
+    <div class="tree-item indent-3">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">0. Data Room/</span>
+    </div>
+
+    <div class="tree-item indent-3">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">1. PitchBook/</span>
+    </div>
+
+    <div class="tree-item indent-3">
+      <svg viewBox="0 0 24 24" fill="#FFC800" stroke="none" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="name folder">2. Founder Score/</span>
+    </div>
+
+    <div class="tree-item indent-3">
+      <span style="color:#555; font-size:14px; padding-left:26px;">...</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TROUBLESHOOTING ═══ -->
+<div class="section-alt">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon yellow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+    </div>
+    <div class="section-tag">Help</div>
+    <div class="section-title">Troubleshooting</div>
+  </div>
+
+  <div class="trouble">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      Claude doesn't see my files
+    </h4>
+    <p>Make sure you selected the OneDrive folder in Cowork. Look for the folder icon and re-select it. Verify the folder appears in Finder first.</p>
+  </div>
+
+  <div class="trouble">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      Airtable isn't connected
+    </h4>
+    <p>Go to Settings &rarr; Connectors and check if Airtable is listed. If not, click it and re-authorize.</p>
+  </div>
+
+  <div class="trouble">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Claude used the wrong skill
+    </h4>
+    <p>Be explicit: <strong>"Read 03. Funding/1. Skills/new-company-pre-screening.md and run it for [Company]"</strong></p>
+  </div>
+
+  <div class="trouble">
+    <h4>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Mistake in the Airtable record
+    </h4>
+    <p>If you used EduTest (sandbox), no worries &mdash; delete or edit it directly in Airtable. Always default to EduTest when testing.</p>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">Angeles Ventures</div>
+  <p>Type <strong style="color:var(--green);">/agents</strong> in Cowork to see all available skills.</p>
+  <p style="margin-top:12px;font-size:14px;opacity:0.5;">April 2026</p>
+</div>
+
+<script>
+// Scroll-tracking: highlight the progress pill for the current section
+const sections = ['install','cowork','connect','skills','build','run','expand'];
+const pills = document.querySelectorAll('.j-pill[data-section]');
+const offset = 140; // nav + progress bar height
+
+function updateProgress() {
+  let current = sections[0];
+  for (const id of sections) {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= offset) {
+      current = id;
+    }
+  }
+  pills.forEach(pill => {
+    if (pill.dataset.section === current) {
+      pill.classList.add('active');
+    } else {
+      pill.classList.remove('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// Smooth scroll for pill clicks
+pills.forEach(pill => {
+  pill.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.getElementById(pill.dataset.section);
+    if (target) {
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset + 2;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
