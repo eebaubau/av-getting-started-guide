@@ -18,7 +18,7 @@ export default function middleware(request) {
     }
   }
 
-  return new Response('Authentication required. envset=' + (process.env.SITE_PASSWORD ? 'yes:' + process.env.SITE_PASSWORD.length : 'no') + ' authhdr=' + (auth ? 'yes' : 'no'), {
+  return new Response('Authentication required', {
     status: 401,
     headers: {
       'WWW-Authenticate': 'Basic realm="Angeles Ventures", charset="UTF-8"',
