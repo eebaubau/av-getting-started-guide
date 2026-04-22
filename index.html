@@ -527,20 +527,28 @@ pdftoppm -h</div>
       <div class="card-title">Install poppler</div>
     </div>
     <div class="card-body">
-      <p><strong>A. Download it.</strong> Go to <a href="https://github.com/oschwartz10612/poppler-windows/releases" style="color:var(--green-dark);font-weight:700;word-break:break-all;">github.com/oschwartz10612/poppler-windows/releases</a> and click the latest <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">Release-*.zip</code>.</p>
+      <p>Open <strong>PowerShell</strong> (press the Windows key, type <strong>"PowerShell"</strong>, hit Enter) and paste this one command. It downloads poppler, extracts it to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler</code>, and adds it to your PATH automatically:</p>
+      <div class="code">$r=Invoke-RestMethod "https://api.github.com/repos/oschwartz10612/poppler-windows/releases/latest";$a=($r.assets|?{$_.name -like "Release-*.zip"})[0];$z="$env:TEMP\poppler.zip";Invoke-WebRequest $a.browser_download_url -OutFile $z;if(Test-Path "C:\poppler"){Remove-Item "C:\poppler" -Recurse -Force};Expand-Archive $z -DestinationPath "C:\" -Force;Get-ChildItem "C:\" -Filter "poppler-*" -Directory|Select -First 1|Rename-Item -NewName "poppler";$p=[Environment]::GetEnvironmentVariable("Path","User");if($p -notlike "*C:\poppler\Library\bin*"){[Environment]::SetEnvironmentVariable("Path","$p;C:\poppler\Library\bin","User")};Write-Host "Done. Close and reopen PowerShell."</div>
+      <p>When it finishes, <strong>close PowerShell and reopen it</strong> so the new PATH kicks in.</p>
 
-      <p><strong>B. Unzip it into <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\</code> and rename the folder to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">poppler</code>.</strong> When you're done, this file should exist:</p>
-      <div class="code">C:\poppler\Library\bin\pdftoppm.exe</div>
-      <p style="font-size:14px;color:var(--gray);margin-top:-4px;">(If it's somewhere else, move things around until that exact path exists. That's the only thing that matters.)</p>
+      <div class="bubble tip-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A6DA8" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span><strong>What that command does, in plain English:</strong> downloads the latest poppler zip from GitHub, unzips it to <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">C:\poppler</code>, and tells Windows where to find it. You don't need to understand the syntax.</span>
+      </div>
 
-      <p style="margin-top:18px;"><strong>C. Tell Windows where to find it.</strong> Press the Windows key, type <strong>"environment"</strong>, and open <strong>"Edit environment variables for your account"</strong>. Then:</p>
-      <ol>
-        <li>Click <strong>Path</strong> in the top list &rarr; click <strong>Edit</strong></li>
-        <li>Click <strong>New</strong> and paste <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin</code></li>
-        <li>Click <strong>OK</strong> on every window until they all close</li>
-      </ol>
-
-      <p><strong>D. Close and reopen PowerShell</strong> so the new PATH kicks in.</p>
+      <details style="margin-top:20px;">
+        <summary style="cursor:pointer;font-weight:800;color:var(--gray);font-size:14px;">Doesn't work? Do it manually &rarr;</summary>
+        <div style="margin-top:14px;padding-left:4px;">
+          <ol>
+            <li>Download the latest <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">Release-*.zip</code> from <a href="https://github.com/oschwartz10612/poppler-windows/releases" style="color:var(--green-dark);font-weight:700;word-break:break-all;">github.com/oschwartz10612/poppler-windows/releases</a>.</li>
+            <li>Right-click the downloaded zip &rarr; <strong>Extract All</strong> &rarr; choose <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\</code> as the destination. You'll get a folder named like <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">poppler-25.12.0</code>.</li>
+            <li>Open <strong>File Explorer</strong>, go to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\</code>, right-click that folder &rarr; <strong>Rename</strong> &rarr; change it to just <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">poppler</code> (delete the version number). You should now have <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin\pdftoppm.exe</code>.</li>
+            <li>Press the Windows key, type <strong>"environment"</strong>, open <strong>"Edit environment variables for your account"</strong>.</li>
+            <li>Click <strong>Path</strong> (top list) &rarr; <strong>Edit</strong> &rarr; <strong>New</strong> &rarr; paste <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin</code> &rarr; click <strong>OK</strong> on every window.</li>
+            <li>Close and reopen PowerShell.</li>
+          </ol>
+        </div>
+      </details>
     </div>
   </div>
 
