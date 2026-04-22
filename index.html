@@ -522,6 +522,29 @@ pdftoppm -h</div>
         <li>Install Node LTS from <a href="https://nodejs.org/en/download" style="color:var(--green-dark);font-weight:700;">nodejs.org/en/download</a> (accept defaults).</li>
         <li>Install poppler: open PowerShell and paste the one-liner below. It downloads, extracts, and PATH-configures poppler automatically.
           <div class="code" style="font-size:12px;">$r=Invoke-RestMethod "https://api.github.com/repos/oschwartz10612/poppler-windows/releases/latest";$a=($r.assets|?{$_.name -like "Release-*.zip"})[0];$z="$env:TEMP\poppler.zip";Invoke-WebRequest $a.browser_download_url -OutFile $z;if(Test-Path "C:\poppler"){Remove-Item "C:\poppler" -Recurse -Force};Expand-Archive $z -DestinationPath "C:\" -Force;Get-ChildItem "C:\" -Filter "poppler-*" -Directory|Select -First 1|Rename-Item -NewName "poppler";$p=[Environment]::GetEnvironmentVariable("Path","User");if($p -notlike "*C:\poppler\Library\bin*"){[Environment]::SetEnvironmentVariable("Path","$p;C:\poppler\Library\bin","User")};Write-Host "Done."</div>
+          <details style="margin-top:10px;">
+            <summary style="cursor:pointer;font-weight:700;color:var(--gray);font-size:13px;">PowerShell command failed? Install poppler by clicking (no code) &rarr;</summary>
+            <div style="margin-top:12px;padding:14px;background:white;border-radius:10px;border:2px solid var(--border);">
+              <ol style="margin:0;">
+                <li><strong>Download the zip.</strong> Open your web browser and go to <a href="https://github.com/oschwartz10612/poppler-windows/releases" style="color:var(--green-dark);font-weight:700;word-break:break-all;">github.com/oschwartz10612/poppler-windows/releases</a>. Under the first release at the top (the one that says "Latest"), find the file called <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">Release-something.zip</code> and click it to download. It'll land in your <strong>Downloads</strong> folder.</li>
+                <li><strong>Unzip it.</strong> Open <strong>File Explorer</strong> (the yellow folder icon in your taskbar), go to <strong>Downloads</strong>, right-click the zip you just downloaded, and choose <strong>Extract All...</strong>. In the window that pops up, change the destination to just <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">C:\</code> (delete what's there and type those 3 characters), then click <strong>Extract</strong>.</li>
+                <li><strong>Rename the folder.</strong> In File Explorer, click <strong>"This PC"</strong> in the left sidebar, then double-click <strong>"Local Disk (C:)"</strong>. You'll see a folder called something like <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">poppler-25.12.0</code>. Right-click it, choose <strong>Rename</strong>, and change the name to just <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">poppler</code> (delete the version number and the dash). Press Enter.</li>
+                <li><strong>Verify the path exists.</strong> Double-click into <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">poppler</code>, then into <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">Library</code>, then into <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">bin</code>. You should see a file called <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">pdftoppm.exe</code>. If you see it, you're good. If not, something went wrong above &mdash; try again.</li>
+                <li><strong>Tell Windows where it is (the PATH part).</strong>
+                  <ol style="margin-top:6px;" type="a">
+                    <li>Press the <strong>Windows key</strong> (the one with the Windows logo, bottom-left of your keyboard).</li>
+                    <li>Type the word <strong>environment</strong> (doesn't matter if the Start menu search is weird, just type it).</li>
+                    <li>Click the result called <strong>"Edit environment variables for your account"</strong> (NOT the one that says "for your system" &mdash; the account one).</li>
+                    <li>A window pops up with two lists. In the <strong>top list</strong>, find the row called <strong>Path</strong>, click it once to select it, then click the <strong>Edit...</strong> button on the right.</li>
+                    <li>Another window pops up with a list of folder paths. Click the <strong>New</strong> button on the right.</li>
+                    <li>A blank row appears. Type exactly: <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">C:\poppler\Library\bin</code> and press Enter.</li>
+                    <li>Click <strong>OK</strong> on this window. Click <strong>OK</strong> on the previous window too. Close any other windows that popped up.</li>
+                  </ol>
+                </li>
+                <li><strong>Close PowerShell completely and open it again</strong> (press Windows key, type PowerShell, press Enter). Then type <code style="background:var(--yellow-light);padding:2px 6px;border-radius:5px;font-size:13px;font-weight:700;">pdftoppm -h</code> and press Enter. If you see a wall of text starting with "pdftoppm version", poppler is working.</li>
+              </ol>
+            </div>
+          </details>
         </li>
         <li>Close and reopen PowerShell, then run:
           <div class="code">pip install python-pptx openpyxl pdf2image pillow numpy pymupdf
@@ -535,6 +558,31 @@ pdftoppm -h</div>
       </ol>
     </div>
   </details>
+
+  <!-- TROUBLESHOOTING -->
+  <div class="bubble tip-yellow" style="margin-top:30px;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#B88800" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div>
+      <strong style="display:block;margin-bottom:10px;font-size:16px;">Common errors and what to do</strong>
+      <p style="margin-bottom:10px;font-size:14px;"><strong>Never used Terminal or PowerShell before?</strong> Don't panic. "Terminal" (Mac) and "PowerShell" (Windows) are apps where you type commands instead of clicking. You open them, paste the command, press Enter. That's it. You don't need to know any of the language.</p>
+
+      <p style="margin-bottom:8px;font-size:14px;"><strong>"PowerShell says: <code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;font-size:12px;">running scripts is disabled on this system</code>"</strong><br>
+      Your company's Windows is locked down. Paste this command first, press Enter, type <strong>Y</strong> to confirm, then try again:
+      <div class="code" style="margin:6px 0;font-size:12px;">Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</div></p>
+
+      <p style="margin-bottom:8px;font-size:14px;"><strong>"<code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;font-size:12px;">python is not recognized</code>" or "<code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;font-size:12px;">command not found: python</code>"</strong><br>
+      Python installed but isn't "on PATH". <strong>Windows:</strong> re-run the Python installer from python.org, but this time <strong>check the box "Add Python to PATH"</strong> on the very first screen. <strong>Mac:</strong> at the end of the Homebrew install, it printed two lines starting with <code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;font-size:12px;">eval</code>. You have to copy those two lines, paste them in Terminal, press Enter. That's what "adding to PATH" means.</p>
+
+      <p style="margin-bottom:8px;font-size:14px;"><strong>"<code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;font-size:12px;">ModuleNotFoundError: No module named 'pptx'</code>" (or pdf2image, numpy, etc.)</strong><br>
+      The <code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;font-size:12px;">pip install</code> step didn't finish, or it installed into a different Python than the one Claude is using. Mac: re-run the pip command with <code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;font-size:12px;">--break-system-packages</code> at the end. Windows: re-run the pip command in a fresh PowerShell window.</p>
+
+      <p style="margin-bottom:8px;font-size:14px;"><strong>"Cowork can't run Python / skill fails with 'no python found'"</strong><br>
+      You installed Python but Claude Desktop is still using the old PATH it loaded when it started. <strong>Fully quit Claude Desktop</strong> (Cmd+Q on Mac, right-click taskbar icon &rarr; Quit on Windows) and open it again.</p>
+
+      <p style="margin-bottom:0;font-size:14px;"><strong>Windows installer shows a "Do you want to allow this app to make changes?" popup</strong><br>
+      That's UAC (Windows Account Control). Click <strong>Yes</strong>. Claude Code cannot click that popup for you &mdash; it needs a human.</p>
+    </div>
+  </div>
 </div>
 </div>
 
