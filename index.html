@@ -529,10 +529,16 @@ pdftoppm -h</div>
     <div class="card-body">
       <ol>
         <li>Go to <a href="https://github.com/oschwartz10612/poppler-windows/releases" style="color:var(--green-dark);font-weight:700;word-break:break-all;">github.com/oschwartz10612/poppler-windows/releases</a> and download the latest <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">Release-*.zip</code>.</li>
-        <li>Extract it to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler</code>.</li>
+        <li>Extract it to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\</code>. After extracting you'll get a folder like <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler-25.12.0\</code> (the version number will match whatever you downloaded).</li>
+        <li>Rename that folder to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler</code> so the path stays stable when future versions come out.</li>
         <li>Add <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin</code> to your PATH:<br>
-          Start &rarr; <strong>"Edit environment variables for your account"</strong> &rarr; Path &rarr; Edit &rarr; New &rarr; paste <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin</code> &rarr; OK out.</li>
+          Start &rarr; <strong>"Edit environment variables for your account"</strong> &rarr; <strong>Path</strong> &rarr; <strong>Edit</strong> &rarr; <strong>New</strong> &rarr; paste <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin</code> &rarr; OK all the dialogs.</li>
+        <li>Close and reopen any PowerShell or terminal windows so the new PATH takes effect.</li>
       </ol>
+      <div class="bubble tip-red">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B83030" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Inside the zip, the <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">Library\bin</code> folder is one level deep inside the versioned folder &mdash; that's why the full PATH is <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">C:\poppler\Library\bin</code> and not just <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">C:\poppler</code>.</span>
+      </div>
     </div>
   </div>
 
