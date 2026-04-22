@@ -351,6 +351,11 @@
     <span>Install</span>
   </a>
   <span class="j-arrow">&#x203A;</span>
+  <a href="#setup" class="j-pill" data-section="setup">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+    <span>Setup</span>
+  </a>
+  <span class="j-arrow">&#x203A;</span>
   <a href="#cowork" class="j-pill" data-section="cowork">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M4 9a9 9 0 0 1 15.36-4.36"/><path d="M20 15a9 9 0 0 1-15.36 4.36"/></svg>
     <span>Cowork</span>
@@ -424,6 +429,146 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="#0A6DA8" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         <span>Claude has two modes: <strong>Chat</strong> (regular conversation) and <strong>Cowork</strong> (files + tools + skills). This guide uses Cowork.</span>
       </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ SETUP: SYSTEM DEPENDENCIES ═══ -->
+<div id="setup">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon yellow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+    </div>
+    <div class="section-tag">One-time</div>
+    <div class="section-title">System Setup</div>
+    <div class="section-subtitle">Before you can run skills like <strong>one-pager</strong>, <strong>investment-memo</strong>, or <strong>pitchbook-sourcing</strong>, your computer needs Python, Node.js, and poppler (used to render pitch deck images). Claude Desktop does not install these for you. This is a one-time setup.</div>
+  </div>
+
+  <h3 style="font-size:26px;font-weight:900;color:var(--darker);margin:10px 0 18px;">macOS</h3>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">1</div>
+      <div class="card-title">Install Homebrew (the Mac package manager)</div>
+    </div>
+    <div class="card-body">
+      <p>Open <strong>Terminal</strong> and paste:</p>
+      <div class="code">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+      <p>Follow the prompts. When it finishes, it will tell you to run <strong>two extra lines</strong> to add Homebrew to your PATH &mdash; do what it says.</p>
+      <p style="font-size:14px;color:var(--gray);">More info: <a href="https://brew.sh" style="color:var(--green-dark);font-weight:700;">brew.sh</a></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">2</div>
+      <div class="card-title">Install Python, Node, and poppler</div>
+    </div>
+    <div class="card-body">
+      <div class="code">brew install python node poppler</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">3</div>
+      <div class="card-title">Install the Python and Node packages the skills use</div>
+    </div>
+    <div class="card-body">
+      <div class="code">pip3 install python-pptx openpyxl pdf2image pillow numpy pymupdf --break-system-packages</div>
+      <div class="code">npm install -g docx</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">4</div>
+      <div class="card-title">Verify</div>
+    </div>
+    <div class="card-body">
+      <div class="code">python3 --version
+node --version
+pdftoppm -h</div>
+      <p>You should see version numbers for Python (3.x) and Node (v20+), and a usage screen for <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">pdftoppm</code>.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size:26px;font-weight:900;color:var(--darker);margin:36px 0 18px;">Windows</h3>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">1</div>
+      <div class="card-title">Install Python 3</div>
+    </div>
+    <div class="card-body">
+      <p>Go to <a href="https://python.org/downloads" style="color:var(--green-dark);font-weight:700;">python.org/downloads</a> and download the latest Python 3 installer.</p>
+      <div class="bubble tip-red">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B83030" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span><strong>Critical:</strong> on the first install screen, check the box labeled <strong>"Add Python to PATH"</strong> before clicking Install.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">2</div>
+      <div class="card-title">Install Node.js</div>
+    </div>
+    <div class="card-body">
+      <p>Go to <a href="https://nodejs.org/en/download" style="color:var(--green-dark);font-weight:700;">nodejs.org/en/download</a> and download the <strong>LTS</strong> Windows installer. Accept the defaults.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">3</div>
+      <div class="card-title">Install poppler</div>
+    </div>
+    <div class="card-body">
+      <ol>
+        <li>Go to <a href="https://github.com/oschwartz10612/poppler-windows/releases" style="color:var(--green-dark);font-weight:700;word-break:break-all;">github.com/oschwartz10612/poppler-windows/releases</a> and download the latest <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">Release-*.zip</code>.</li>
+        <li>Extract it to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler</code>.</li>
+        <li>Add <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin</code> to your PATH:<br>
+          Start &rarr; <strong>"Edit environment variables for your account"</strong> &rarr; Path &rarr; Edit &rarr; New &rarr; paste <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin</code> &rarr; OK out.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">4</div>
+      <div class="card-title">Install the Python and Node packages the skills use</div>
+    </div>
+    <div class="card-body">
+      <p>Open <strong>PowerShell</strong> and run:</p>
+      <div class="code">pip install python-pptx openpyxl pdf2image pillow numpy pymupdf</div>
+      <div class="code">npm install -g docx</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">5</div>
+      <div class="card-title">Verify</div>
+    </div>
+    <div class="card-body">
+      <div class="code">python --version
+node --version
+pdftoppm -h</div>
+    </div>
+  </div>
+
+  <div class="bubble tip-yellow" style="margin-top:30px;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#B88800" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div>
+      <strong style="display:block;margin-bottom:8px;">Troubleshooting</strong>
+      <ul style="margin:0;padding-left:20px;">
+        <li><strong>"command not found" / "is not recognized"</strong> &mdash; you skipped adding the tool to PATH. Windows: re-run the Python installer with "Add to PATH" checked, or manually add it. Mac: follow the two extra lines Homebrew printed at the end of its install.</li>
+        <li><strong><code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">ModuleNotFoundError: No module named 'pptx'</code></strong> &mdash; the pip install above didn't run or ran against a different Python. On Mac, re-run with <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">--break-system-packages</code>. On Windows, make sure you're using the Python you just installed (run <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">where python</code> to check).</li>
+        <li><strong>Cowork can't run Python scripts</strong> &mdash; fully quit Claude Desktop and reopen it after installing Python/Node so it picks up the new PATH.</li>
+      </ul>
     </div>
   </div>
 </div>
@@ -884,7 +1029,7 @@ give Claude, the better the output.]</span>
 
 <script>
 // Scroll-tracking: highlight the progress pill for the current section
-const sections = ['install','cowork','connect','skills','build','run','expand'];
+const sections = ['install','setup','cowork','connect','skills','build','run','expand'];
 const pills = document.querySelectorAll('.j-pill[data-section]');
 const offset = 140; // nav + progress bar height
 
