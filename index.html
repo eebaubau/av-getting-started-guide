@@ -443,150 +443,98 @@
     </div>
     <div class="section-tag">One-time</div>
     <div class="section-title">System Setup</div>
-    <div class="section-subtitle">Before you can run skills like <strong>one-pager</strong>, <strong>investment-memo</strong>, or <strong>pitchbook-sourcing</strong>, your computer needs Python, Node.js, and poppler (used to render pitch deck images). Claude Desktop does not install these for you. This is a one-time setup.</div>
+    <div class="section-subtitle">Before you can run skills like <strong>one-pager</strong>, <strong>investment-memo</strong>, or <strong>pitchbook-sourcing</strong>, your computer needs Python, Node.js, and poppler installed. Good news: <strong>Claude Code will do it all for you.</strong></div>
   </div>
-
-  <h3 style="font-size:26px;font-weight:900;color:var(--darker);margin:10px 0 18px;">macOS</h3>
 
   <div class="card">
     <div class="card-top">
       <div class="card-num yellow">1</div>
-      <div class="card-title">Install Homebrew (the Mac package manager)</div>
+      <div class="card-title">Open Claude Code</div>
     </div>
     <div class="card-body">
-      <p>Open <strong>Terminal</strong> and paste:</p>
-      <div class="code">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
-      <p>Follow the prompts. When it finishes, it will tell you to run <strong>two extra lines</strong> to add Homebrew to your PATH &mdash; do what it says.</p>
-      <p style="font-size:14px;color:var(--gray);">More info: <a href="https://brew.sh" style="color:var(--green-dark);font-weight:700;">brew.sh</a></p>
+      <p>In Claude Desktop, look at the top of the screen for the mode tabs and click <strong>Claude Code</strong> (next to Chat and Cowork). Claude Code is the mode that can run commands on your computer &mdash; that's what we need to install things.</p>
     </div>
   </div>
 
   <div class="card">
     <div class="card-top">
       <div class="card-num yellow">2</div>
-      <div class="card-title">Install Python, Node, and poppler</div>
+      <div class="card-title">Paste this prompt</div>
     </div>
     <div class="card-body">
-      <div class="code">brew install python node poppler</div>
+      <p>Copy the whole block below and paste it into Claude Code:</p>
+      <div class="code">Please set up my machine to run the Angeles Ventures skills.
+
+Detect whether I'm on macOS or Windows, then install:
+- Python 3 (and make sure it's on PATH)
+- Node.js LTS (and make sure it's on PATH)
+- poppler (on Windows, put it at C:\poppler and add C:\poppler\Library\bin to my user PATH)
+
+Then install these Python packages with pip:
+python-pptx, openpyxl, pdf2image, pillow, numpy, pymupdf
+
+And this Node package globally with npm:
+docx
+
+When everything is done, verify the install by running:
+python3 --version (or python --version on Windows)
+node --version
+pdftoppm -h
+
+If anything fails, explain what went wrong in plain English and suggest the fix. Do not ask me to run commands myself unless something truly requires admin input.</div>
+      <p>Claude will walk through the install, ask for any permissions it needs, and tell you when it's done.</p>
     </div>
   </div>
 
   <div class="card">
     <div class="card-top">
       <div class="card-num yellow">3</div>
-      <div class="card-title">Install the Python and Node packages the skills use</div>
+      <div class="card-title">Restart Claude Desktop</div>
     </div>
     <div class="card-body">
-      <div class="code">pip3 install python-pptx openpyxl pdf2image pillow numpy pymupdf --break-system-packages</div>
-      <div class="code">npm install -g docx</div>
+      <p>Fully <strong>quit</strong> Claude Desktop (Cmd+Q on Mac, right-click the taskbar icon &rarr; Quit on Windows) and reopen it. This lets Cowork pick up the newly installed Python and Node.</p>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-top">
-      <div class="card-num yellow">4</div>
-      <div class="card-title">Verify</div>
-    </div>
-    <div class="card-body">
+  <div class="bubble tip-blue" style="margin-top:30px;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0A6DA8" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span><strong>Why Claude Code and not Cowork?</strong> Cowork can read files and use connectors but cannot execute shell commands on your machine. Claude Code can. Setup is a one-time thing; after this you mostly live in Cowork.</span>
+  </div>
+
+  <details style="margin-top:24px;">
+    <summary style="cursor:pointer;font-weight:800;color:var(--gray);font-size:14px;">Prefer to do it manually? Click for step-by-step commands &rarr;</summary>
+    <div style="margin-top:20px;padding:20px;background:var(--bg-snow);border-radius:14px;">
+      <h4 style="font-size:18px;font-weight:900;color:var(--darker);margin-bottom:12px;">macOS</h4>
+      <p style="font-size:14px;margin-bottom:10px;">Install Homebrew first (if you don't already have it):</p>
+      <div class="code">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+      <p style="font-size:14px;margin-bottom:10px;">Then:</p>
+      <div class="code">brew install python node poppler
+pip3 install python-pptx openpyxl pdf2image pillow numpy pymupdf --break-system-packages
+npm install -g docx</div>
+      <p style="font-size:14px;margin-bottom:10px;">Verify:</p>
       <div class="code">python3 --version
 node --version
 pdftoppm -h</div>
-      <p>You should see version numbers for Python (3.x) and Node (v20+), and a usage screen for <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">pdftoppm</code>.</p>
-    </div>
-  </div>
 
-  <h3 style="font-size:26px;font-weight:900;color:var(--darker);margin:36px 0 18px;">Windows</h3>
-
-  <div class="card">
-    <div class="card-top">
-      <div class="card-num yellow">1</div>
-      <div class="card-title">Install Python 3</div>
-    </div>
-    <div class="card-body">
-      <p>Go to <a href="https://python.org/downloads" style="color:var(--green-dark);font-weight:700;">python.org/downloads</a> and download the latest Python 3 installer.</p>
-      <div class="bubble tip-red">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#B83030" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span><strong>Critical:</strong> on the first install screen, check the box labeled <strong>"Add Python to PATH"</strong> before clicking Install.</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <div class="card-num yellow">2</div>
-      <div class="card-title">Install Node.js</div>
-    </div>
-    <div class="card-body">
-      <p>Go to <a href="https://nodejs.org/en/download" style="color:var(--green-dark);font-weight:700;">nodejs.org/en/download</a> and download the <strong>LTS</strong> Windows installer. Accept the defaults.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <div class="card-num yellow">3</div>
-      <div class="card-title">Install poppler</div>
-    </div>
-    <div class="card-body">
-      <p>Open <strong>PowerShell</strong> (press the Windows key, type <strong>"PowerShell"</strong>, hit Enter) and paste this one command. It downloads poppler, extracts it to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler</code>, and adds it to your PATH automatically:</p>
-      <div class="code">$r=Invoke-RestMethod "https://api.github.com/repos/oschwartz10612/poppler-windows/releases/latest";$a=($r.assets|?{$_.name -like "Release-*.zip"})[0];$z="$env:TEMP\poppler.zip";Invoke-WebRequest $a.browser_download_url -OutFile $z;if(Test-Path "C:\poppler"){Remove-Item "C:\poppler" -Recurse -Force};Expand-Archive $z -DestinationPath "C:\" -Force;Get-ChildItem "C:\" -Filter "poppler-*" -Directory|Select -First 1|Rename-Item -NewName "poppler";$p=[Environment]::GetEnvironmentVariable("Path","User");if($p -notlike "*C:\poppler\Library\bin*"){[Environment]::SetEnvironmentVariable("Path","$p;C:\poppler\Library\bin","User")};Write-Host "Done. Close and reopen PowerShell."</div>
-      <p>When it finishes, <strong>close PowerShell and reopen it</strong> so the new PATH kicks in.</p>
-
-      <div class="bubble tip-blue">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#0A6DA8" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <span><strong>What that command does, in plain English:</strong> downloads the latest poppler zip from GitHub, unzips it to <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">C:\poppler</code>, and tells Windows where to find it. You don't need to understand the syntax.</span>
-      </div>
-
-      <details style="margin-top:20px;">
-        <summary style="cursor:pointer;font-weight:800;color:var(--gray);font-size:14px;">Doesn't work? Do it manually &rarr;</summary>
-        <div style="margin-top:14px;padding-left:4px;">
-          <ol>
-            <li>Download the latest <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">Release-*.zip</code> from <a href="https://github.com/oschwartz10612/poppler-windows/releases" style="color:var(--green-dark);font-weight:700;word-break:break-all;">github.com/oschwartz10612/poppler-windows/releases</a>.</li>
-            <li>Right-click the downloaded zip &rarr; <strong>Extract All</strong> &rarr; choose <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\</code> as the destination. You'll get a folder named like <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">poppler-25.12.0</code>.</li>
-            <li>Open <strong>File Explorer</strong>, go to <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\</code>, right-click that folder &rarr; <strong>Rename</strong> &rarr; change it to just <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">poppler</code> (delete the version number). You should now have <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin\pdftoppm.exe</code>.</li>
-            <li>Press the Windows key, type <strong>"environment"</strong>, open <strong>"Edit environment variables for your account"</strong>.</li>
-            <li>Click <strong>Path</strong> (top list) &rarr; <strong>Edit</strong> &rarr; <strong>New</strong> &rarr; paste <code style="background:var(--yellow-light);padding:2px 8px;border-radius:6px;font-size:14px;font-weight:700;">C:\poppler\Library\bin</code> &rarr; click <strong>OK</strong> on every window.</li>
-            <li>Close and reopen PowerShell.</li>
-          </ol>
-        </div>
-      </details>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <div class="card-num yellow">4</div>
-      <div class="card-title">Install the Python and Node packages the skills use</div>
-    </div>
-    <div class="card-body">
-      <p>Open <strong>PowerShell</strong> and run:</p>
-      <div class="code">pip install python-pptx openpyxl pdf2image pillow numpy pymupdf</div>
-      <div class="code">npm install -g docx</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <div class="card-num yellow">5</div>
-      <div class="card-title">Verify</div>
-    </div>
-    <div class="card-body">
-      <div class="code">python --version
+      <h4 style="font-size:18px;font-weight:900;color:var(--darker);margin:24px 0 12px;">Windows</h4>
+      <ol style="font-size:14px;">
+        <li>Install Python 3 from <a href="https://python.org/downloads" style="color:var(--green-dark);font-weight:700;">python.org/downloads</a> &mdash; <strong>check "Add Python to PATH"</strong> on the first screen.</li>
+        <li>Install Node LTS from <a href="https://nodejs.org/en/download" style="color:var(--green-dark);font-weight:700;">nodejs.org/en/download</a> (accept defaults).</li>
+        <li>Install poppler: open PowerShell and paste the one-liner below. It downloads, extracts, and PATH-configures poppler automatically.
+          <div class="code" style="font-size:12px;">$r=Invoke-RestMethod "https://api.github.com/repos/oschwartz10612/poppler-windows/releases/latest";$a=($r.assets|?{$_.name -like "Release-*.zip"})[0];$z="$env:TEMP\poppler.zip";Invoke-WebRequest $a.browser_download_url -OutFile $z;if(Test-Path "C:\poppler"){Remove-Item "C:\poppler" -Recurse -Force};Expand-Archive $z -DestinationPath "C:\" -Force;Get-ChildItem "C:\" -Filter "poppler-*" -Directory|Select -First 1|Rename-Item -NewName "poppler";$p=[Environment]::GetEnvironmentVariable("Path","User");if($p -notlike "*C:\poppler\Library\bin*"){[Environment]::SetEnvironmentVariable("Path","$p;C:\poppler\Library\bin","User")};Write-Host "Done."</div>
+        </li>
+        <li>Close and reopen PowerShell, then run:
+          <div class="code">pip install python-pptx openpyxl pdf2image pillow numpy pymupdf
+npm install -g docx</div>
+        </li>
+        <li>Verify:
+          <div class="code">python --version
 node --version
 pdftoppm -h</div>
+        </li>
+      </ol>
     </div>
-  </div>
-
-  <div class="bubble tip-yellow" style="margin-top:30px;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#B88800" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-    <div>
-      <strong style="display:block;margin-bottom:8px;">Troubleshooting</strong>
-      <ul style="margin:0;padding-left:20px;">
-        <li><strong>"command not found" / "is not recognized"</strong> &mdash; you skipped adding the tool to PATH. Windows: re-run the Python installer with "Add to PATH" checked, or manually add it. Mac: follow the two extra lines Homebrew printed at the end of its install.</li>
-        <li><strong><code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">ModuleNotFoundError: No module named 'pptx'</code></strong> &mdash; the pip install above didn't run or ran against a different Python. On Mac, re-run with <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">--break-system-packages</code>. On Windows, make sure you're using the Python you just installed (run <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:5px;font-size:13px;">where python</code> to check).</li>
-        <li><strong>Cowork can't run Python scripts</strong> &mdash; fully quit Claude Desktop and reopen it after installing Python/Node so it picks up the new PATH.</li>
-      </ul>
-    </div>
-  </div>
+  </details>
 </div>
 </div>
 
