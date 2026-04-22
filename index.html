@@ -622,7 +622,7 @@ pdftoppm -h</div>
 
   <div class="card">
     <div class="card-top">
-      <div class="card-num blue">3</div>
+      <div class="card-num blue">4</div>
       <div class="card-title">Open Cowork Mode</div>
     </div>
     <div class="card-body">
@@ -636,7 +636,7 @@ pdftoppm -h</div>
 
   <div class="card">
     <div class="card-top">
-      <div class="card-num blue">4</div>
+      <div class="card-num blue">5</div>
       <div class="card-title">Connect Your OneDrive Folder</div>
     </div>
     <div class="card-body">
@@ -673,26 +673,48 @@ pdftoppm -h</div>
       <svg viewBox="0 0 24 24" fill="none" stroke="#E0A800" stroke-width="2.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
     </div>
     <div class="section-tag">Chapter 3</div>
-    <div class="section-title">Connect Airtable</div>
-    <div class="section-subtitle">MCP is the bridge between Claude and external apps. Airtable is the most important one for deal flow.</div>
+    <div class="section-title">Connect Your Tools</div>
+    <div class="section-subtitle">Connectors are the bridges between Claude and the apps you already use. For AV, the two essentials are <strong>Microsoft 365</strong> (reads OneDrive, SharePoint, Outlook) and <strong>Airtable</strong> (reads and writes the deal flow pipeline).</div>
   </div>
 
   <div class="card">
     <div class="card-top">
-      <div class="card-num yellow">5</div>
+      <div class="card-num yellow">6</div>
+      <div class="card-title">Add the Microsoft 365 Connector</div>
+    </div>
+    <div class="card-body">
+      <p>This is how Claude reads the Angeles Ventures OneDrive directly from the cloud &mdash; no need for the local OneDrive sync to be perfectly up to date.</p>
+      <ol>
+        <li>In Claude Desktop, go to <strong>Settings</strong> (gear icon, bottom-left)</li>
+        <li>Click <strong>Connectors</strong> (or <strong>Integrations</strong>, depending on your version)</li>
+        <li>Search for <strong>"Microsoft 365"</strong> and click <strong>Connect</strong></li>
+        <li>A browser window opens &mdash; sign in with <strong>startups@angelesvc.com</strong> and approve the permissions Claude asks for (OneDrive, SharePoint, Outlook, Calendar)</li>
+        <li>Once done, you'll see <strong>Microsoft 365</strong> listed as connected in Settings</li>
+      </ol>
+      <div class="bubble tip-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A6DA8" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>The Microsoft 365 connector is <strong>different</strong> from the OneDrive folder you synced in Chapter 2. The sync puts files on your disk; the connector lets Claude query them via Microsoft's cloud APIs. Both together give you the best experience.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num yellow">7</div>
       <div class="card-title">Add the Airtable Connector</div>
     </div>
     <div class="card-body">
+      <p>Airtable is where the deal flow pipeline lives. Claude needs this connector to read and write company records.</p>
       <ol>
         <li>In Claude Desktop, go to <strong>Settings</strong> (gear icon, bottom-left)</li>
-        <li>Look for <strong>Connectors</strong> or <strong>Integrations</strong></li>
+        <li>Click <strong>Connectors</strong> (or <strong>Integrations</strong>)</li>
         <li>Search for <strong>"Airtable"</strong> and click <strong>Connect</strong></li>
-        <li>You'll be redirected to Airtable &mdash; sign in and authorize access</li>
-        <li>Once done, you'll see Airtable listed as connected in Settings</li>
+        <li>A browser window opens &mdash; sign in with your Airtable account (or create one with <strong>startups@angelesvc.com</strong> if you don't have one) and authorize access to the AV workspace</li>
+        <li>Once done, you'll see <strong>Airtable</strong> listed as connected in Settings</li>
       </ol>
       <div class="bubble tip-yellow">
         <svg viewBox="0 0 24 24" fill="none" stroke="#8A6C00" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <span>For this exercise, we use <strong>EduTest</strong> (the sandbox) &mdash; NOT Total Deal Flow. EduTest is safe for testing!</span>
+        <span>When testing, always default to <strong>EduTest</strong> (the sandbox) &mdash; NOT Total Deal Flow (production). Production writes require explicit confirmation.</span>
       </div>
     </div>
   </div>
@@ -764,7 +786,7 @@ pdftoppm -h</div>
 
   <div class="card">
     <div class="card-top">
-      <div class="card-num red">7</div>
+      <div class="card-num red">8</div>
       <div class="card-title">Create the Skill File</div>
     </div>
     <div class="card-body">
@@ -776,7 +798,7 @@ pdftoppm -h</div>
 
   <div class="card">
     <div class="card-top">
-      <div class="card-num red">8</div>
+      <div class="card-num red">9</div>
       <div class="card-title">Write the Skill Contents</div>
     </div>
     <div class="card-body">
@@ -837,7 +859,7 @@ give Claude, the better the output.]</span>
 
   <div class="card">
     <div class="card-top">
-      <div class="card-num red">9</div>
+      <div class="card-num red">10</div>
       <div class="card-title">Save the File</div>
     </div>
     <div class="card-body">
@@ -863,7 +885,7 @@ give Claude, the better the output.]</span>
 
   <div class="card">
     <div class="card-top">
-      <div class="card-num green">10</div>
+      <div class="card-num green">11</div>
       <div class="card-title">Tell Claude to Use the Skill</div>
     </div>
     <div class="card-body">
